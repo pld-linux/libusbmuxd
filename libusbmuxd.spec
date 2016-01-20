@@ -12,7 +12,10 @@ Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 # Source0-md5:	e5351ff6f6eedcb50701e02d91cc480c
 URL:		http://www.libimobiledevice.org/
 BuildRequires:	libplist-devel >= 1.11
+BuildRequires:	pkgconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%undefine	__cxx
 
 %description
 libusbmuxd is the client library used for communicating with Apple's
