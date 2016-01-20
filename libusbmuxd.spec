@@ -5,7 +5,7 @@
 Summary:	Client library USB multiplex daemon for Apple's iOS devices
 Name:		libusbmuxd
 Version:	1.0.10
-Release:	2
+Release:	3
 License:	LGPL v2+
 Group:		Libraries
 Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
@@ -13,6 +13,7 @@ Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
 URL:		http://www.libimobiledevice.org/
 BuildRequires:	libplist-devel >= 1.11
 BuildRequires:	pkgconfig
+Obsoletes:	usbmuxd-libs < 1.0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %undefine	__cxx
@@ -35,8 +36,8 @@ Utilities for Apple's iOS devices
 Summary:	Development package for %{name}
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Obsoletes:	usbmuxd-devel < 1.0.9
 Provides:	usbmuxd-devel = %{version}-%{release}
+Obsoletes:	usbmuxd-devel < 1.0.9
 
 %description devel
 Files for development with %{name}.
