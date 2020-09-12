@@ -6,16 +6,17 @@
 Summary:	Client library to communicate with the USB multiplex daemon for Apple's iOS devices
 Summary(pl.UTF-8):	Biblioteka kliencka do komunikacji z demonem multipleksującym USB dla urządzeń z Apple iOS
 Name:		libusbmuxd
-Version:	1.0.10
-Release:	4
+Version:	2.0.2
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
-Source0:	http://www.libimobiledevice.org/downloads/%{name}-%{version}.tar.bz2
-# Source0-md5:	e5351ff6f6eedcb50701e02d91cc480c
-URL:		http://www.libimobiledevice.org/
-BuildRequires:	libplist-devel >= 1.11
+#Source0Download: https://libimobiledevice.org/
+Source0:	https://github.com/libimobiledevice/libusbmuxd/releases/download/%{version}/%{name}-%{version}.tar.bz2
+# Source0-md5:	f1ae06b1342a7a795cc3a4fc76750f6e
+URL:		https://libimobiledevice.org/
+BuildRequires:	libplist-devel >= 2.2.0
 BuildRequires:	pkgconfig
-Requires:	libplist >= 1.11
+Requires:	libplist >= 2.2.0
 Obsoletes:	usbmuxd-libs < 1.0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -49,6 +50,7 @@ Summary:	Header files for libusbmuxd
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libusbmuxd
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libplist-devel >= 2.2.0
 Provides:	usbmuxd-devel = %{version}-%{release}
 Obsoletes:	usbmuxd-devel < 1.0.9
 
@@ -86,11 +88,13 @@ Statyczna biblioteka libusbmuxd.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+
 %{__make} install \
 	INSTALL='install -p' \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__rm} $RPM_BUILD_ROOT%{_libdir}/libusbmuxd.la
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libusbmuxd-2.0.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -100,23 +104,26 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS NEWS README
-%attr(755,root,root) %{_libdir}/libusbmuxd.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libusbmuxd.so.4
+%doc AUTHORS NEWS README.md
+%attr(755,root,root) %{_libdir}/libusbmuxd-2.0.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libusbmuxd-2.0.so.6
 
 %files utils
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/inetcat
 %attr(755,root,root) %{_bindir}/iproxy
+%{_mandir}/man1/inetcat.1*
+%{_mandir}/man1/iproxy.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/libusbmuxd.so
+%attr(755,root,root) %{_libdir}/libusbmuxd-2.0.so
 %{_includedir}/usbmuxd.h
 %{_includedir}/usbmuxd-proto.h
-%{_pkgconfigdir}/libusbmuxd.pc
+%{_pkgconfigdir}/libusbmuxd-2.0.pc
 
 %if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/libusbmuxd.a
+%{_libdir}/libusbmuxd-2.0.a
 %endif
