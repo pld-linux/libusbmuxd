@@ -7,7 +7,7 @@ Summary:	Client library to communicate with the USB multiplex daemon for Apple's
 Summary(pl.UTF-8):	Biblioteka kliencka do komunikacji z demonem multipleksującym USB dla urządzeń z Apple iOS
 Name:		libusbmuxd
 Version:	2.0.2
-Release:	1
+Release:	2
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://libimobiledevice.org/
