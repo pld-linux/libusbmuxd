@@ -6,16 +6,18 @@
 Summary:	Client library to communicate with the USB multiplex daemon for Apple's iOS devices
 Summary(pl.UTF-8):	Biblioteka kliencka do komunikacji z demonem multipleksującym USB dla urządzeń z Apple iOS
 Name:		libusbmuxd
-Version:	2.0.2
-Release:	2
+Version:	2.1.0
+Release:	1
 License:	LGPL v2.1+
 Group:		Libraries
 #Source0Download: https://libimobiledevice.org/
 Source0:	https://github.com/libimobiledevice/libusbmuxd/releases/download/%{version}/%{name}-%{version}.tar.bz2
-# Source0-md5:	f1ae06b1342a7a795cc3a4fc76750f6e
+# Source0-md5:	6783c5e811f76dd0de9ace3ddf5ecc91
 URL:		https://libimobiledevice.org/
+BuildRequires:	libimobiledevice-glue-devel >= 1.2.0
 BuildRequires:	libplist-devel >= 2.2.0
 BuildRequires:	pkgconfig
+Requires:	libimobiledevice-glue >= 1.2.0
 Requires:	libplist >= 2.2.0
 Obsoletes:	usbmuxd-libs < 1.0.9
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -50,6 +52,7 @@ Summary:	Header files for libusbmuxd
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libusbmuxd
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+Requires:	libimobiledevice-glue-devel >= 1.2.0
 Requires:	libplist-devel >= 2.2.0
 Provides:	usbmuxd-devel = %{version}-%{release}
 Obsoletes:	usbmuxd-devel < 1.0.9
@@ -106,7 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS NEWS README.md
 %attr(755,root,root) %{_libdir}/libusbmuxd-2.0.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libusbmuxd-2.0.so.6
+%attr(755,root,root) %ghost %{_libdir}/libusbmuxd-2.0.so.7
 
 %files utils
 %defattr(644,root,root,755)
